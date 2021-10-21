@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Akatsuki_Service" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Akatsuki_Service" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfGood">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Good" nillable="true" type="tns:Good" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGood" nillable="true" type="tns:ArrayOfGood" />
+  <xs:complexType name="Good">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GoodReviews" nillable="true" type="tns:ArrayOfGoodReview" />
+      <xs:element minOccurs="0" name="Goods_Catergory" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Goods_Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Goods_ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Goods_Image" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Goods_Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Goods_Price" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ProductCarts" nillable="true" type="tns:ArrayOfProductCart" />
+      <xs:element minOccurs="0" name="Student" nillable="true" type="tns:Student" />
+      <xs:element minOccurs="0" name="Student_Number" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Good" nillable="true" type="tns:Good" />
+  <xs:complexType name="ArrayOfGoodReview">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GoodReview" nillable="true" type="tns:GoodReview" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGoodReview" nillable="true" type="tns:ArrayOfGoodReview" />
+  <xs:complexType name="GoodReview">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Good" nillable="true" type="tns:Good" />
+      <xs:element minOccurs="0" name="Student" nillable="true" type="tns:Student" />
+      <xs:element minOccurs="0" name="comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="gID" type="xs:int" />
+      <xs:element minOccurs="0" name="reviewID" type="xs:int" />
+      <xs:element minOccurs="0" name="sNUM" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GoodReview" nillable="true" type="tns:GoodReview" />
+  <xs:complexType name="Student">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GoodReviews" nillable="true" type="tns:ArrayOfGoodReview" />
+      <xs:element minOccurs="0" name="Goods" nillable="true" type="tns:ArrayOfGood" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductCarts" nillable="true" type="tns:ArrayOfProductCart" />
+      <xs:element minOccurs="0" name="ServiceCarts" nillable="true" type="tns:ArrayOfServiceCart" />
+      <xs:element minOccurs="0" name="ServiceReviews" nillable="true" type="tns:ArrayOfServiceReview" />
+      <xs:element minOccurs="0" name="Services" nillable="true" type="tns:ArrayOfService" />
+      <xs:element minOccurs="0" name="Student_Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Student_Cellphone_Number" type="xs:int" />
+      <xs:element minOccurs="0" name="Student_Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Student_Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Student_Number" type="xs:int" />
+      <xs:element minOccurs="0" name="Student_Personal_Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Student_Surname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Student_Username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Student" nillable="true" type="tns:Student" />
+  <xs:complexType name="ArrayOfProductCart">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductCart" nillable="true" type="tns:ProductCart" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductCart" nillable="true" type="tns:ArrayOfProductCart" />
+  <xs:complexType name="ProductCart">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CartID" type="xs:int" />
+      <xs:element minOccurs="0" name="Good" nillable="true" type="tns:Good" />
+      <xs:element minOccurs="0" name="ItemQuantity" type="xs:int" />
+      <xs:element minOccurs="0" name="ProductID" type="xs:int" />
+      <xs:element minOccurs="0" name="Student" nillable="true" type="tns:Student" />
+      <xs:element minOccurs="0" name="sNUM" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductCart" nillable="true" type="tns:ProductCart" />
+  <xs:complexType name="ArrayOfServiceCart">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ServiceCart" nillable="true" type="tns:ServiceCart" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfServiceCart" nillable="true" type="tns:ArrayOfServiceCart" />
+  <xs:complexType name="ServiceCart">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CartID" type="xs:int" />
+      <xs:element minOccurs="0" name="ItemQuantity" type="xs:int" />
+      <xs:element minOccurs="0" name="Service" nillable="true" type="tns:Service" />
+      <xs:element minOccurs="0" name="ServiceID" type="xs:int" />
+      <xs:element minOccurs="0" name="Student" nillable="true" type="tns:Student" />
+      <xs:element minOccurs="0" name="sNUM" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServiceCart" nillable="true" type="tns:ServiceCart" />
+  <xs:complexType name="Service">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ServiceCarts" nillable="true" type="tns:ArrayOfServiceCart" />
+      <xs:element minOccurs="0" name="ServiceReviews" nillable="true" type="tns:ArrayOfServiceReview" />
+      <xs:element minOccurs="0" name="Services_Catergory" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Services_Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Services_ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Services_Image_" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Services_Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Services_Price" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Student" nillable="true" type="tns:Student" />
+      <xs:element minOccurs="0" name="Student_Number" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Service" nillable="true" type="tns:Service" />
+  <xs:complexType name="ArrayOfServiceReview">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ServiceReview" nillable="true" type="tns:ServiceReview" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfServiceReview" nillable="true" type="tns:ArrayOfServiceReview" />
+  <xs:complexType name="ServiceReview">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Service" nillable="true" type="tns:Service" />
+      <xs:element minOccurs="0" name="Student" nillable="true" type="tns:Student" />
+      <xs:element minOccurs="0" name="comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="reviewID" type="xs:int" />
+      <xs:element minOccurs="0" name="sID" type="xs:int" />
+      <xs:element minOccurs="0" name="sNUM" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServiceReview" nillable="true" type="tns:ServiceReview" />
+  <xs:complexType name="ArrayOfService">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Service" nillable="true" type="tns:Service" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfService" nillable="true" type="tns:ArrayOfService" />
+</xs:schema>

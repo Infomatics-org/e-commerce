@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Akatsuki_Database" Class="Akatsuki_LINQDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Akatsuki_Database.mdf;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="Akatsuki_DatabaseConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Student" Member="Students">
+    <Type Name="Student">
+      <Column Name="Student_Number" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Student_Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Student_Address" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Student_Personal_Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Student_Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Student_Surname" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Student_Username" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Student_Cellphone_Number" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Student_Service" Member="Services" ThisKey="Student_Number" OtherKey="Student_Number" Type="Service" />
+      <Association Name="Student_Good" Member="Goods" ThisKey="Student_Number" OtherKey="Student_Number" Type="Good" />
+      <Association Name="Student_ServiceReview" Member="ServiceReviews" ThisKey="Student_Number" OtherKey="sNUM" Type="ServiceReview" />
+      <Association Name="Student_GoodReview" Member="GoodReviews" ThisKey="Student_Number" OtherKey="sNUM" Type="GoodReview" />
+      <Association Name="Student_ServiceCart" Member="ServiceCarts" ThisKey="Student_Number" OtherKey="sNUM" Type="ServiceCart" />
+      <Association Name="Student_ProductCart" Member="ProductCarts" ThisKey="Student_Number" OtherKey="sNUM" Type="ProductCart" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Services" Member="Services">
+    <Type Name="Service">
+      <Column Name="Services_Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Services_Price" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Services_Description" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="[Services_Image ]" Member="Services_Image_" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Services_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Services_Catergory" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Student_Number" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Service_ServiceReview" Member="ServiceReviews" ThisKey="Services_ID" OtherKey="sID" Type="ServiceReview" />
+      <Association Name="Service_ServiceCart" Member="ServiceCarts" ThisKey="Services_ID" OtherKey="ServiceID" Type="ServiceCart" />
+      <Association Name="Student_Service" Member="Student" ThisKey="Student_Number" OtherKey="Student_Number" Type="Student" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Goods" Member="Goods">
+    <Type Name="Good">
+      <Column Name="Goods_Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Goods_Price" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Goods_Description" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Goods_Image" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Goods_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Goods_Catergory" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Student_Number" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Good_GoodReview" Member="GoodReviews" ThisKey="Goods_ID" OtherKey="gID" Type="GoodReview" />
+      <Association Name="Good_ProductCart" Member="ProductCarts" ThisKey="Goods_ID" OtherKey="ProductID" Type="ProductCart" />
+      <Association Name="Student_Good" Member="Student" ThisKey="Student_Number" OtherKey="Student_Number" Type="Student" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ServiceReview" Member="ServiceReviews">
+    <Type Name="ServiceReview">
+      <Column Name="reviewID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="sID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="sNUM" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="comment" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="Student_ServiceReview" Member="Student" ThisKey="sNUM" OtherKey="Student_Number" Type="Student" IsForeignKey="true" />
+      <Association Name="Service_ServiceReview" Member="Service" ThisKey="sID" OtherKey="Services_ID" Type="Service" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GoodReview" Member="GoodReviews">
+    <Type Name="GoodReview">
+      <Column Name="reviewID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="gID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="sNUM" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="comment" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="Good_GoodReview" Member="Good" ThisKey="gID" OtherKey="Goods_ID" Type="Good" IsForeignKey="true" />
+      <Association Name="Student_GoodReview" Member="Student" ThisKey="sNUM" OtherKey="Student_Number" Type="Student" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ServiceCart" Member="ServiceCarts">
+    <Type Name="ServiceCart">
+      <Column Name="CartID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="sNUM" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ServiceID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ItemQuantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Service_ServiceCart" Member="Service" ThisKey="ServiceID" OtherKey="Services_ID" Type="Service" IsForeignKey="true" />
+      <Association Name="Student_ServiceCart" Member="Student" ThisKey="sNUM" OtherKey="Student_Number" Type="Student" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ProductCart" Member="ProductCarts">
+    <Type Name="ProductCart">
+      <Column Name="CartID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="sNUM" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ItemQuantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Good_ProductCart" Member="Good" ThisKey="ProductID" OtherKey="Goods_ID" Type="Good" IsForeignKey="true" />
+      <Association Name="Student_ProductCart" Member="Student" ThisKey="sNUM" OtherKey="Student_Number" Type="Student" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
